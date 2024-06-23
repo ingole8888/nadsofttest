@@ -1,0 +1,28 @@
+// prisma/schema.prisma
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Student {
+  id          String   @id @unique @default(uuid())
+  firstName   String   @default("")
+  lastName    String   @default("")
+  dateOfBirth String  @default("")
+  email       String   @unique
+  createdAt DateTime  @default(now())
+  marks       Mark[]
+}
+
+model Mark {
+  id        String   @id @unique @default(uuid())
+  subject   String   @default("")
+  marks     Int      @default(0)
+  studentId String   
+  student   Student  @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  createdAt DateTime  @default(now())
+}
