@@ -257,9 +257,14 @@ const StudentList = () => {
     };
 
 
-    const handleEditMark = async (mark) => {
-        const newMarks = marks.map(m => (m.id === mark.id ? { ...m, isEditing: true } : m));
-        setMarks(newMarks);
+    const [editMarkId, setEditMarkId] = useState(null);
+
+    const handleEditMark = (markId) => {
+        setEditMarkId(markId);
+    };
+
+    const handleCancelEditMark = () => {
+        setEditMarkId(null);
     };
 
     const handleSaveEditMark = async (mark) => {
@@ -269,8 +274,8 @@ const StudentList = () => {
         };
         try {
             await axios.put(`https://naddev.onrender.com/api/marks/${mark.id}`, markData);
-            const newMarks = marks.map(m => (m.id === mark.id ? { ...m, isEditing: false } : m));
-            setMarks(newMarks);
+            await fetchMarks(selectedStudent.id);
+            setEditMarkId(null); // Reset edit mode
             Swal.fire({
                 title: 'Success!',
                 text: 'Mark has been updated successfully.',
@@ -289,6 +294,7 @@ const StudentList = () => {
             });
         }
     };
+
 
 
     const handleDeleteMark = async (markId) => {
@@ -505,34 +511,61 @@ const StudentList = () => {
                                 </div>
                             </Form>
                             <Table striped bordered hover>
-                                <thead>
-                                    <tr>
-                                        <th>Sr No</th>
-                                        <th>Subject</th>
-                                        <th>Marks</th>
-                                        <th>Action</th>
+                                {marks.map((mark, index) => (
+                                    <tr key={mark.id}>
+                                        <td>{index + 1}</td>
+                                        <td>{editMarkId === mark.id ? (
+                                            <Form.Control
+                                                type="text"
+                                                value={mark.subject}
+                                                onChange={(e) => {
+                                                    const newMarks = [...marks];
+                                                    newMarks[index].subject = e.target.value;
+                                                    setMarks(newMarks);
+                                                }}
+                                            />
+                                        ) : mark.subject}</td>
+                                        <td>{editMarkId === mark.id ? (
+                                            <Form.Control
+                                                type="number"
+                                                value={mark.marks}
+                                                onChange={(e) => {
+                                                    const newMarks = [...marks];
+                                                    newMarks[index].marks = e.target.value;
+                                                    setMarks(newMarks);
+                                                }}
+                                            />
+                                        ) : mark.marks}</td>
+                                        <td>
+                                            {editMarkId === mark.id ? (
+                                                <div>
+                                                    <Button variant="success" size="sm" onClick={() => handleSaveEditMark(mark)}>
+                                                        Save
+                                                    </Button>{' '}
+                                                    <Button variant="secondary" size="sm" onClick={handleCancelEditMark}>
+                                                        Cancel
+                                                    </Button>
+                                                </div>
+                                            ) : (
+                                                <div>
+                                                    <FaEdit
+                                                        style={{ color: 'green', cursor: 'pointer', marginRight: '10px' }}
+                                                        onClick={() => handleEditMark(mark.id)}
+                                                    />
+                                                    <FaTrash
+                                                        style={{ color: 'red', cursor: 'pointer' }}
+                                                        onClick={() => handleDeleteMark(mark.id)}
+                                                    />
+                                                </div>
+                                            )}
+                                        </td>
                                     </tr>
-                                </thead>
-                                <tbody>
-                                    {marks.map((mark, index) => (
-                                        <tr key={mark.id}>
-                                            <td>{index + 1}</td>
-                                            <td>{mark.subject}</td>
-                                            <td>{mark.marks}</td>
-                                            <td>
-                                                <FaEdit
-                                                    style={{ color: 'green', cursor: 'pointer', marginRight: '10px' }}
-                                                    onClick={() => handleEditMark(mark)}
-                                                />
-                                                <FaTrash
-                                                    style={{ color: 'red', cursor: 'pointer' }}
-                                                    onClick={() => handleDeleteMark(mark.id)}
-                                                />
-                                            </td>
-                                        </tr>
-                                    ))}
-                                </tbody>
+                                ))}
                             </Table>
+                            <tbody>
+
+                            </tbody>
+
                         </div>
                     )}
                 </Modal.Body>
