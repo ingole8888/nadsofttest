@@ -1,0 +1,164 @@
+{
+    "clientName": "Thunder Client",
+    "collectionName": "nadsoft",
+    "collectionId": "b9d51b4a-6b8f-419c-873a-9325c7e9bad9",
+    "dateExported": "2024-06-23T12:46:34.823Z",
+    "version": "1.2",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "380bf674-2c80-4172-9135-1705f6490af7",
+            "colId": "b9d51b4a-6b8f-419c-873a-9325c7e9bad9",
+            "containerId": "",
+            "name": "addmarks",
+            "url": "https://naddev.onrender.com/api/marks",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2024-06-23T12:40:10.566Z",
+            "modified": "2024-06-23T12:44:06.333Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"subject\":\"History\",\n  \"marks\":55,\n  \"studentId\":\"d0d10103-e96b-4a48-9c0a-e93126f0f195\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "ee4c72a4-d950-4949-9b7e-fd58fa43fc66",
+            "colId": "b9d51b4a-6b8f-419c-873a-9325c7e9bad9",
+            "containerId": "",
+            "name": "add member",
+            "url": "https://naddev.onrender.com/api/students/",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2024-06-23T12:41:29.425Z",
+            "modified": "2024-06-23T12:41:29.425Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"firstName\": \"Suniql\",\n  \"email\": \"suniq1@gmail.com\",\n  \"parentId\": \"d15\",\n  \"age\": \"27\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "d49eb03e-ca42-491d-ae8d-f8b6dbba0130",
+            "colId": "b9d51b4a-6b8f-419c-873a-9325c7e9bad9",
+            "containerId": "",
+            "name": "get member",
+            "url": "https://naddev.onrender.com/api/students/",
+            "method": "GET",
+            "sortNum": 30000,
+            "created": "2024-06-23T12:42:02.806Z",
+            "modified": "2024-06-23T12:42:02.806Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"firstName\": \"Suniql\",\n  \"email\": \"suniq1@gmail.com\",\n  \"parentId\": \"d15\",\n  \"age\": \"27\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "b44b6bb8-d4e3-46d3-80d0-65dec22d4681",
+            "colId": "b9d51b4a-6b8f-419c-873a-9325c7e9bad9",
+            "containerId": "",
+            "name": "get member by id",
+            "url": "https://naddev.onrender.com/api/students/d5e36879-e6d7-49d6-ad2d-2ffffab4f60e",
+            "method": "GET",
+            "sortNum": 40000,
+            "created": "2024-06-23T12:42:31.372Z",
+            "modified": "2024-06-23T12:42:31.372Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"firstName\": \"Suniql\",\n  \"email\": \"suniq1@gmail.com\",\n  \"parentId\": \"d15\",\n  \"age\": \"27\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "f4506828-a50d-490d-9bde-e1ac0b74f6a8",
+            "colId": "b9d51b4a-6b8f-419c-873a-9325c7e9bad9",
+            "containerId": "",
+            "name": "update member",
+            "url": "https://naddev.onrender.com/api/students/d5e36879-e6d7-49d6-ad2d-2ffffab4f60e",
+            "method": "PUT",
+            "sortNum": 50000,
+            "created": "2024-06-23T12:42:54.473Z",
+            "modified": "2024-06-23T12:42:54.473Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"firstName\": \"Suniql\",\n  \"email\": \"suniq1@gmail.com\",\n  \"parentId\": \"d15\",\n  \"age\": \"27\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "9c0232bd-20a4-4c08-a282-80ed6051ca13",
+            "colId": "b9d51b4a-6b8f-419c-873a-9325c7e9bad9",
+            "containerId": "",
+            "name": "delete member",
+            "url": "https://naddev.onrender.com/api/students/d5e36879-e6d7-49d6-ad2d-2ffffab4f60e",
+            "method": "DELETE",
+            "sortNum": 60000,
+            "created": "2024-06-23T12:43:23.133Z",
+            "modified": "2024-06-23T12:43:23.133Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"firstName\": \"Suniql\",\n  \"email\": \"suniq1@gmail.com\",\n  \"parentId\": \"d15\",\n  \"age\": \"27\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "f4810f5c-e7ac-42e6-bb64-201961bdaf5b",
+            "colId": "b9d51b4a-6b8f-419c-873a-9325c7e9bad9",
+            "containerId": "",
+            "name": "get marks",
+            "url": "https://naddev.onrender.com/api/marks",
+            "method": "GET",
+            "sortNum": 70000,
+            "created": "2024-06-23T12:44:37.055Z",
+            "modified": "2024-06-23T12:44:37.056Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"subject\":\"History\",\n  \"marks\":55,\n  \"studentId\":\"d0d10103-e96b-4a48-9c0a-e93126f0f195\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "46eac92a-cd36-4a16-ad2d-9f905e4eea72",
+            "colId": "b9d51b4a-6b8f-419c-873a-9325c7e9bad9",
+            "containerId": "",
+            "name": "update marks",
+            "url": "https://naddev.onrender.com/api/marks/e90b4511-40ef-4e8b-8bf5-a8f3171e214b",
+            "method": "PUT",
+            "sortNum": 80000,
+            "created": "2024-06-23T12:45:43.762Z",
+            "modified": "2024-06-23T12:45:43.762Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"subject\":\"Social Science\",\n  \"marks\":55,\n  \"studentId\":\"d0d10103-e96b-4a48-9c0a-e93126f0f195\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "66839b8b-c9cb-4b1d-9806-38c6b19d37b7",
+            "colId": "b9d51b4a-6b8f-419c-873a-9325c7e9bad9",
+            "containerId": "",
+            "name": "delete marks",
+            "url": "https://naddev.onrender.com/api/marks/e90b4511-40ef-4e8b-8bf5-a8f3171e214b",
+            "method": "DELETE",
+            "sortNum": 90000,
+            "created": "2024-06-23T12:46:07.568Z",
+            "modified": "2024-06-23T12:46:07.568Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"subject\":\"Social Science\",\n  \"marks\":55,\n  \"studentId\":\"d0d10103-e96b-4a48-9c0a-e93126f0f195\"\n}",
+                "form": []
+            }
+        }
+    ],
+    "ref": "JlTj8Sml39LTME2y4SFtwH9k79--UlJf6QuL8BgUBX9klxvPzYEK9OoehEuNkHrwjtpJxixreXAlMPbxtrwp6g"
+}
