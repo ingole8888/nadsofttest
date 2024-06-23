@@ -14,6 +14,9 @@ model Student {
   lastName    String   @default("")
   dateOfBirth String  @default("")
   email       String   @unique
+  age    String   @default("")
+  parentId String  @default("")
+  parentEmail String  @default("")
   createdAt DateTime  @default(now())
   marks       Mark[]
 }

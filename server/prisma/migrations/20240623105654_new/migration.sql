@@ -5,6 +5,8 @@ CREATE TABLE "Student" (
     "lastName" TEXT NOT NULL DEFAULT '',
     "dateOfBirth" TEXT NOT NULL DEFAULT '',
     "email" TEXT NOT NULL,
+    "age" TEXT NOT NULL DEFAULT '',
+    "parentId" TEXT NOT NULL DEFAULT '',
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "Student_pkey" PRIMARY KEY ("id")

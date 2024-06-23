@@ -2,14 +2,17 @@ const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
 createStudent = async (req, res) => {
-    const { firstName, lastName, dateOfBirth, email } = req.body;
+    const { firstName, email, parentId, age } = req.body;
     try {
+        let lastName = "";
+        let dateOfBirth = "";
+        
         const existingStudent = await prisma.student.findUnique({
             where: { email },
         });
 
         if (existingStudent) {
-            return res.status(400).send({status: false, message: "Email already taken, please use a different email!"});
+            return res.status(400).send({ status: false, message: "Email already taken, please use a different email!" });
         }
 
         const student = await prisma.student.create({
@@ -17,12 +20,14 @@ createStudent = async (req, res) => {
                 firstName,
                 lastName,
                 dateOfBirth,
-                email
+                email,
+                parentId: parentId,
+                age
             }
         });
-        res.status(201).send({status:true, data:student});
+        res.status(201).send({ status: true, data: student });
     } catch (error) {
-        res.status(500).send({status:false, error: error.message });
+        res.status(500).send({ status: false, error: error.message });
     }
 };
 
@@ -42,8 +47,8 @@ getAllStudents = async (req, res) => {
                         { email: { contains: search, mode: 'insensitive' } },
                     ]
                 },
-                include:{
-                    marks:true
+                include: {
+                    marks: true
                 },
                 orderBy: {
                     createdAt: 'desc'
@@ -61,14 +66,14 @@ getAllStudents = async (req, res) => {
         ]);
 
         res.status(200).send({
-            status:true,
+            status: true,
             total,
             page: parseInt(page),
             limit: parseInt(limit),
             data: students
         });
     } catch (error) {
-        res.status(500).send({status:false, error: error.message });
+        res.status(500).send({ status: false, error: error.message });
     }
 };
 
@@ -80,35 +85,42 @@ getStudentById = async (req, res) => {
             include: { marks: true }
         });
 
-        if(!student){
-            res.status(404).send({status:false, message:"Student not found!"})
+        if (!student) {
+            res.status(404).send({ status: false, message: "Student not found!" })
         }
 
-        res.status(200).send({status:true, data:student});
+        res.status(200).send({ status: true, data: student });
     } catch (error) {
-        res.status(500).send({status:false, error: error.message });
+        res.status(500).send({ status: false, error: error.message });
     }
 };
 
 updateStudent = async (req, res) => {
     const { id } = req.params;
-    const { firstName, lastName, dateOfBirth, email } = req.body;
+    const { firstName, lastName, dateOfBirth, email, parentId, age } = req.body;
     try {
         const student1 = await prisma.student.findUnique({
             where: { id },
         });
 
-        if(!student1){
-            res.status(404).send({status:false, message:"Student not found!"})
+        if (!student1) {
+            res.status(404).send({ status: false, message: "Student not found!" })
         }
 
         const student = await prisma.student.update({
             where: { id },
-            data: { firstName, lastName, dateOfBirth, email }
+            data: {
+                firstName : firstName ? firstName : student1.firstName,
+                lastName : lastName ? lastName : student1.lastName,
+                dateOfBirth : dateOfBirth ? dateOfBirth : student1.dateOfBirth,
+                email : email ? email : student1.email,
+                parentId : parentId ? parentId : student1.parentId,
+                age : age ? age : student1.age
+            }
         });
-        res.status(200).send({status:true, data:student});
+        res.status(200).send({ status: true, data: student });
     } catch (error) {
-        res.status(500).send({status:false, error: error.message });
+        res.status(500).send({ status: false, error: error.message });
     }
 };
 
@@ -120,16 +132,16 @@ deleteStudent = async (req, res) => {
             where: { id },
         });
 
-        if(!student1){
-            res.status(404).send({status:false, message:"Student not found!"})
+        if (!student1) {
+            res.status(404).send({ status: false, message: "Student not found!" })
         }
 
         await prisma.student.delete({ where: { id } });
 
-        res.status(200).send({status:true, message: 'Student deleted' });
+        res.status(200).send({ status: true, message: 'Student deleted' });
     } catch (error) {
-        res.status(500).send({status:false, error: error.message });
+        res.status(500).send({ status: false, error: error.message });
     }
 };
 
-module.exports = {createStudent, getAllStudents, getStudentById, updateStudent, deleteStudent}
+module.exports = { createStudent, getAllStudents, getStudentById, updateStudent, deleteStudent }
