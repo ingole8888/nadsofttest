@@ -53,12 +53,9 @@ const StudentList = () => {
 
     const fetchMarks = async (studentId) => {
         try {
-            const response = await axios.get(`https://naddev.onrender.com/api/marks`, {
-                params: {
-                    studentId
-                }
-            });
-            setMarks(response.data.data);
+            const response = await axios.get(`https://naddev.onrender.com/api/students/${studentId}`);
+            setMarks(response.data.data.marks);
+            console.log(response.data.data.marks)
         } catch (error) {
             console.error('Error fetching marks:', error);
         }
@@ -153,6 +150,7 @@ const StudentList = () => {
 
     const handleInfoModalShow = async (student) => {
         setSelectedStudent(student);
+        console.log(selectedStudent)
         await fetchMarks(student.id);
         setShowInfoModal(true);
     };
